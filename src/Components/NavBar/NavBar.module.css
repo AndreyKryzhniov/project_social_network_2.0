@@ -1,0 +1,10 @@
+.nav {
+  grid-area: n;
+  background-color: gainsboro;
+  height: 100%;
+}
+
+a {
+  color: red;
+}
+

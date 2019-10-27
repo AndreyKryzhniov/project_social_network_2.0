@@ -1,0 +1,27 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.small_avatar {
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.item {
+  color: red;
+}
+
+
+
+

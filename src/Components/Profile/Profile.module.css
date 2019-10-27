@@ -1,0 +1,15 @@
+.profile {
+  grid-area: p;
+  background-color: gainsboro;
+  height: 100%;
+}
+
+.profile .fon {
+  width: 100%;
+}
+
+.profile .avatar {
+  height: 230px;
+}
+
+
