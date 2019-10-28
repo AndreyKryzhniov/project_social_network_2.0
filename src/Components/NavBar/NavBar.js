@@ -1,23 +1,17 @@
 import React from 'react';
-import n from './NavBar.module.css';
+import s from './NavBar.module.css';
+import {NavLink} from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = (props) => {
+
+
+    let navBarElements = props.state.sidebar.map(n => <div className={s.item}><NavLink to={n.url} activeClassName={s.active}>{n.name}</NavLink></div>)
+
     return (
-        <div className={n.nav}>
-            <div>
-                <a>Profile</a>
-            </div>
-            <div>
-                <a>Messages</a>
-            </div>
-            <div>
-                <a>News</a>
-            </div>
-            <div>
-                <a>Music</a>
-            </div>
-            <div>
-                <a>Settings</a>
+        <div className={s.nav}>
+            {navBarElements}
+            <div className={s.itemFriends}>
+                <NavLink to='/friends' activeClassName={s.active}>Friends</NavLink>
             </div>
         </div>
     );

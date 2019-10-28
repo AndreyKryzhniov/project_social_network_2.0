@@ -1,10 +1,10 @@
 import React from 'react';
-import h from './Header.module.css';
+import s from './Header.module.css';
 
 function Header() {
   return (
-      <header className={h.header}>
-        <img src='http://www.marketer.ru/wp-content/uploads/2011/10/wwf-logo-design.jpg'/>
+      <header className={s.header}>
+        <img className={s.logo} src='http://www.marketer.ru/wp-content/uploads/2011/10/wwf-logo-design.jpg'/>
       </header>
   );
 }

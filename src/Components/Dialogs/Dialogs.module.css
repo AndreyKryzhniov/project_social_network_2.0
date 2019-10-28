@@ -1,0 +1,31 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+}
+
+
+.dialogsItem {
+    padding: 10px;
+}
+
+.dialogsItem .dialog {
+
+}
+
+.messages {
+    padding: 10px;
+
+}
+
+.messages .message {
+
+}
+
+.smallAvatar {
+     width: 60px;
+     height: 60px;
+     box-sizing: border-box;
+     border-radius: 30px;
+ }
+
+
