@@ -4,12 +4,27 @@ import m from "../Profile/MyPosts/MyPosts.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-
 const Dialogs = (props) => {
+debugger
 
-    let message = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let state = props.dialogsPage
 
-    let messages = props.state.messages.map(m => <Message message={m.message}/>)
+    let message = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>)
+
+    let messages = state.messages.map(m => <Message message={m.message} key={m.id} m={m.id}/>)
+
+    let newMessageBody = state.newMessage
+
+
+    let addMessage = () => {
+        props.addMessageAction()
+    }
+
+    let onNewMessageChange = (e) => {
+        let body = e.target.value
+        props.updateNewMessageBody(body)
+    }
+
 
     return (
         <div className={s.dialogs}>
@@ -18,9 +33,12 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messages}
-                <textarea className={m.textarea}>New message</textarea>
+                <textarea
+                    className={m.textarea}
+                    onChange={onNewMessageChange}
+                    value={newMessageBody}/>
                 <div>
-                    <button>Send</button>
+                    <button onClick={addMessage}>Send</button>
                 </div>
             </div>
         </div>

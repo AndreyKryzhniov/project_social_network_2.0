@@ -1,0 +1,14 @@
+.selectedPage {
+  font-weight: bold;
+}
+
+.smallAvatar {
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+
+
+
+
