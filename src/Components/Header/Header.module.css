@@ -1,11 +1,15 @@
 .header {
   grid-area: h;
   background-color: aqua;
-  width: 100vw;
+  width: 100%;
 }
 
 .header .logo {
   height: 60px;
+}
+
+.loginBlock {
+  float: right;
 }
 
 
