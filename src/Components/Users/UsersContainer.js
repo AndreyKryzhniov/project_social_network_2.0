@@ -22,13 +22,11 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        let {currentPage, pageSize, getUsersThunkAC} = this.props
-        getUsersThunkAC(currentPage, pageSize)
+        this.props.getUsersThunkAC(this.props.currentPage, this.props.pageSize)
     }
 
     setCurrentPage = (numberPage) => {
-        let {setCurrentPageThunkAC, pageSize} = this.props
-        setCurrentPageThunkAC(numberPage, pageSize)
+        this.props.setCurrentPageThunkAC(numberPage, this.props.pageSize)
     }
 
     render() {
@@ -62,12 +60,15 @@ let mapStateToProps = (state) => {
     }
 }
 
+let mapDispatchToProps = {
+    getUsersThunkAC,
+    setCurrentPageThunkAC,
+    followThunkAC,
+    unfollowThunkAC
+}
 
 export default compose(
-    connect(mapStateToProps, {getUsersThunkAC,
-        setCurrentPageThunkAC,
-        followThunkAC,
-        unfollowThunkAC}),
+    connect(mapStateToProps, mapDispatchToProps),
     withRouter,
     withAuthRedirect
 )(UsersContainer)
