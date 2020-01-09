@@ -3,6 +3,9 @@ import s from './Dialogs.module.css';
 import m from "../Profile/MyPosts/MyPosts.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../common/FormsControls/FormsControls";
+import {maxLengthCreator, required} from "../validators/validators";
 
 const Dialogs = (props) => {
 
@@ -12,18 +15,10 @@ const Dialogs = (props) => {
 
     let messages = state.messages.map(m => <Message message={m.message} key={m.id} m={m.id}/>)
 
-    let newMessageBody = state.newMessage
 
-
-    let addMessage = () => {
-        props.addMessageAction()
+    let addNewMessage = (value) => {
+        props.addMessageAction(value.newMessageBody)
     }
-
-    let onNewMessageChange = (e) => {
-        let body = e.target.value
-        props.updateNewMessageBody(body)
-    }
-
 
     return (
         <div className={s.dialogs}>
@@ -32,16 +27,30 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messages}
-                <textarea
-                    className={m.textarea}
-                    onChange={onNewMessageChange}
-                    value={newMessageBody}/>
-                <div>
-                    <button onClick={addMessage}>Send</button>
-                </div>
+                <AddMessageReduxForm onSubmit={addNewMessage}/>
             </div>
         </div>
     );
 }
+
+const maxLength = maxLengthCreator(30)
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                component={Textarea}
+                name={'newMessageBody'}
+                placeholder={'Enter you message'}
+                validate={[required, maxLength]}
+            />
+            <div>
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
+
+const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm)
 
 export default Dialogs;

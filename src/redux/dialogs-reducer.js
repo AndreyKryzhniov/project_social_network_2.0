@@ -1,5 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UP_DATE_NEW_MESSAGE_TEXT = 'UP-DATE-NEW-MESSAGE-TEXT';
+const ADD_MESSAGE = 'samurai-network/dialogs/ADD-MESSAGE';
 
 let initialState = {
     dialogs: [
@@ -14,8 +13,7 @@ let initialState = {
         {id: '1', message: 'How are you?'},
         {id: '2', message: 'Am fine'},
         {id: '3', message: 'And you?'}
-    ],
-    newMessage: ''
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -23,21 +21,13 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE:
             return {
                 ...state,
-                newMessage: '',
-                messages: [...state.messages, {id: '4', message: state.newMessage}]
+                messages: [...state.messages, {id: '4', message: action.newMessageBody}]
             }
-        case UP_DATE_NEW_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessage: action.body
-            }
-        }
         default:
             return state
     }
 }
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({type: UP_DATE_NEW_MESSAGE_TEXT, body})
+export const addMessageActionCreator = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody})
 
 export default dialogsReducer

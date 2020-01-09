@@ -38,7 +38,6 @@ let store = {
         }
     },
     _callSubscriber() {
-        console.log('ssss')
     },
     getState() {
         return this._state

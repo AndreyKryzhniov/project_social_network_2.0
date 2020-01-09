@@ -1,33 +1,23 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import avatarProfile from '../../../Images/AvatarProfile.jpg'
 import Preloader from "../../common/Preloader/Preloader";
+// import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatusThunkAC}) => {
+
+    if (!profile) {
         return <Preloader/>
     }
-    let changeStatus = () => {
-
-    }
-
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img className={s.fon}*/}
-            {/*         src={panorama}/>*/}
-            {/*</div>*/}
             <div className={s.descriptionBlock}>
-                {/*<img className={s.avatar}*/}
-                {/*     src={avatarProfile}/>*/}
-                     <img className={s.avatar}
-                     src={props.profile.photos.large}/>
+                <img className={s.avatar}
+                     src={profile.photos.large}/>
                 <div>
-                    <span>{props.profile.fullName}</span>
+                    <span>{profile.fullName}</span>
                 </div>
-                {/*<span>{props.profile.lookingForAJobDescription}</span>*/}
-                {/*{props.profile.lookingForAJob ? <span>Мне нужна работа</span> : <span>{props.profile.lookingForAJobDescription}</span>}*/}
-                {/*<button onClick={changeStatus}>CHANGE STATUS</button>*/}
+                <ProfileStatusWithHooks status={status} updateStatusThunkAC={updateStatusThunkAC}/>
             </div>
         </div>
     );

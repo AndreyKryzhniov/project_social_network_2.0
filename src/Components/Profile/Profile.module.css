@@ -6,4 +6,19 @@
   height: 230px;
 }
 
+.statusBlock {
+  background-color: beige;
+  border: 1px solid azure;
+  border-radius: 3px;
+  height: 50px;
+  width: 100%;
+}
+
+.statusBlock input{
+  background-color: beige;
+  border: 1px solid azure;
+  border-radius: 3px;
+  height: 100%;
+  width: 100%;
+}
 
