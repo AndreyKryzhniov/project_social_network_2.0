@@ -5,7 +5,6 @@ import User from "./User/User";
 
 const Users = (props) => {
 
-
     let unfollow = (u, userId) => {
         props.unfollow(u, userId)
     }
@@ -15,7 +14,10 @@ const Users = (props) => {
     }
 
     return <div>
-        <Paginator {...props}/>
+        <Paginator totalItemsCount={props.totalUsersCount}
+                   pageSize={props.pageSize}
+                   currentPage={props.currentPage}
+                   setCurrentPage={props.setCurrentPage} />
         {props.usersPage.map(u => <User {...props} unfollow={unfollow} follow={follow} user={u}  key={u.id}/>)}
     </div>
 }
