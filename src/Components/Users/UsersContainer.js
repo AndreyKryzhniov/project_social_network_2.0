@@ -26,6 +26,7 @@ class UsersContainer extends React.Component {
     }
 
     setCurrentPage = (numberPage) => {
+
         this.props.setCurrentPageThunkAC(numberPage, this.props.pageSize)
     }
 
@@ -33,7 +34,8 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching ?
-                    <Preloader/> : <Users currentPage={this.props.currentPage}
+                    <Preloader/> : null}
+                    <Users currentPage={this.props.currentPage}
                                           totalUsersCount={this.props.totalUsersCount}
                                           pageSize={this.props.pageSize}
                                           setCurrentPage={this.setCurrentPage}
@@ -43,7 +45,7 @@ class UsersContainer extends React.Component {
                                           auth={this.props.auth}
                                           // toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                                           followingIsProgress={this.props.followingIsProgress}
-                    />}
+                    />
             </>
         )
     }

@@ -37,17 +37,26 @@ export const UnfollowAPI = {
     }
 }
 
-export const getUserProfile = {
+export const userProfile = {
     getProfile(userId) {
         return instance.get(`profile/${userId}`)
-    }
-}
-
-export const userProfileStatus = {
+    },
     updateStatus(status) {
         return instance.put(`profile/status`, {status})
     },
     getStatus(userId = 4917) {
         return instance.get(`profile/status/${userId}`)
+    },
+    savePhoto(photo) {
+        let formData = new FormData()
+        formData.append('image', photo)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    saveProfile(profile) {
+        return instance.put(`profile`, profile)
     }
 }

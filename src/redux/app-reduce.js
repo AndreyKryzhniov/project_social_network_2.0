@@ -22,6 +22,7 @@ const appReducer = (state = initialState, action) => {
 export const initializedSuccessdAC = () => ({type: INITIALIZED_SUCCESS})
 
 export const initializeAppThunk =  () => (dispatch) => {
+    debugger
     let promise = dispatch(setUserDataThunkAC())
     let promiseOne = dispatch(setUserProfileThunkAC())
     let promiseTwo = dispatch(getStatusThunkAC())

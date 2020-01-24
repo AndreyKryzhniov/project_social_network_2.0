@@ -38,8 +38,7 @@ export const loginThunkAC = (email, password, rememberMe) => async (dispatch) =>
         dispatch(setUserDataThunkAC())
     } else {
         let messages = response.data.messages.length > 0 ? response.data.messages : 'Error...maybe you are a bad person'
-        let action = stopSubmit('login', {_error: messages})
-        dispatch(action)
+        dispatch(stopSubmit('login', {_error: messages}))
     }
 }
 

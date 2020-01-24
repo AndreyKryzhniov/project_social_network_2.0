@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User/User";
 
@@ -18,7 +17,7 @@ const Users = (props) => {
                    pageSize={props.pageSize}
                    currentPage={props.currentPage}
                    setCurrentPage={props.setCurrentPage} />
-        {props.usersPage.map(u => <User {...props} unfollow={unfollow} follow={follow} user={u}  key={u.id}/>)}
+        <div>{props.usersPage.map(u => <User {...props} unfollow={unfollow} follow={follow} user={u} key={u.id}/>)}</div>
     </div>
 }
 

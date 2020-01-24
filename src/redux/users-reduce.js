@@ -76,6 +76,14 @@ export const getUsersThunkAC = (currentPage, pageSize) => async (dispatch) => {
     dispatch(setTotalUsersCount(response.data.totalCount))
 }
 
+export const setCurrentPageThunkAC = (numberPage, pageSize) => async (dispatch) => {
+    dispatch(setCurrentPage(numberPage))
+    dispatch(toggleIsFetching(true))
+    let response = await UsersAPI.getUsers(numberPage, pageSize)
+    dispatch(toggleIsFetching(false))
+    dispatch(setUsers(response.data.items))
+}
+
 const followUnfollowFlow = async (dispatch, u, userId, apiMethod, actionCreator) => {
     await dispatch(toggleIsFollowingProgress(true, userId))
     let response = apiMethod
@@ -93,13 +101,7 @@ export const unfollowThunkAC = (u, userId) => async (dispatch) => {
     followUnfollowFlow(dispatch, u, userId, await UnfollowAPI.getUnfollow(u), unfollow(userId))
 }
 
-export const setCurrentPageThunkAC = (numberPage, pageSize) => async (dispatch) => {
-    dispatch(setCurrentPage(numberPage))
-    dispatch(toggleIsFetching(true))
-    let response = await UsersAPI.getUsers(numberPage, pageSize)
-    dispatch(toggleIsFetching(false))
-    dispatch(setUsers(response.data.items))
-}
+
 
 
 export default usersReducer

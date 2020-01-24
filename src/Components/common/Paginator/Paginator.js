@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import s from "./Paginator.module.css";
 
 const Paginator = ({totalItemsCount, pageSize, currentPage, setCurrentPage, portionSize = 10}) => {
@@ -12,10 +12,9 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, setCurrentPage, port
 
     let portionCount = Math.ceil(pagesCount / portionSize)
     let [portionNumber, setPortionNumber] = useState(1);
-    let leftPortionPageNumber = ((portionNumber - 1) * portionSize + 1)
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
-    debugger
     return (
         <div>
             {portionNumber > 1 &&
@@ -23,7 +22,7 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, setCurrentPage, port
             {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => {
                     return <span key={p} className={currentPage === p && s.selectedPage}
-                                 onClick={() => {
+                                 onClick={(e) => {
                                      setCurrentPage(p)
                                  }}>{p} </span>
                 }
