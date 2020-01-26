@@ -60,7 +60,6 @@ export const lookingForAJob = (lookingForAJob) => ({type: LOOKING_FOR_A_JOB, loo
 export const changeStatus = (status) => ({type: CHANGE_STATUS, status})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos})
-// export const saveProfile = (profile) => ({type: SAVE_PROFILE, profile})
 
 export const setUserProfileThunkAC = (userId) => async (dispatch) => {
     if (!userId) {
@@ -95,6 +94,7 @@ export const saveProfileTC = (profile) => async (dispatch, getState) => {
     const response = await userProfile.saveProfile(profile)
     if (response.data.resultCode === 0) {
         dispatch(setUserProfileThunkAC(userId))
+    } else {
         dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
         return Promise.reject(response.data.messages[0])
     }

@@ -6,8 +6,8 @@ import {NavLink} from "react-router-dom";
 const NavBar = (props) => {
     let state = props.store.getState().navBarPage
     let navBarElements = state.sidebar.map(n =>
-        <div className={s.item} key={n.id}>
-            <NavLink to={n.url} key={n.id} activeClassName={s.active}>
+        <div className={s.item} key={n.key}>
+            <NavLink to={n.url} activeClassName={s.active}>
                 {n.name}
             </NavLink>
         </div>)

@@ -5,7 +5,7 @@ import s from "../../../common/FormsControls/FormsControls.module.css";
 // import {required} from "../../../validators/validators";
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
-debugger
+
     return <form onSubmit={handleSubmit}>
         <div>
             <button>Save</button>

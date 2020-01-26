@@ -28,7 +28,7 @@ const ProfileInfo = ({profile, status, updateStatusThunkAC, isOwner, savePhoto, 
     const onSubmit = (formData) => {
         saveProfileTC(formData).then(
             () => {
-                setEditMode(false);
+                setEditMode(false)
             }
         );
     }
@@ -39,7 +39,8 @@ const ProfileInfo = ({profile, status, updateStatusThunkAC, isOwner, savePhoto, 
                 <div><img className={s.avatar} src={profile.photos.large || userPhoto}/></div>
                 <div>{isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}</div>
                 {
-                    editMode ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
+                    editMode ?
+                        <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> :
                         <ProfileData goToEditMode={() => setEditMode(true)} profile={profile} isOwner={isOwner}/>
                 }
                 <ProfileStatusWithHooks status={status} updateStatusThunkAC={updateStatusThunkAC}/>
@@ -68,9 +69,13 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
     </div>
 }
 
-
-let Contact = ({contactTitle, contactValue}) => {
-    return <div className={s.contacts}><b>{contactTitle}:</b>{contactValue}</div>
+const Contact = ({contactTitle, contactValue}) => {
+    return <div>
+        {contactValue &&
+        <div className={s.contacts}><b>{contactTitle}:</b>{contactValue}</div>
+        }
+    </div>
+    // return <div className={s.contacts}><b>{contactTitle}:</b>{contactValue}</div>
 }
 
 export default ProfileInfo;
