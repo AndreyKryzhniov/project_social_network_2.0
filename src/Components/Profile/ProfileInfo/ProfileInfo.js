@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 // import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
-import userPhoto from "../../../Images/not_images_profile.png";
+import userPhoto from "../../../Images/not_foto.jfif";
 import ProfileDataFormReduxForm from "./ProfileContacts/ProfileDataForm";
 
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import NavBar from "./Components/NavBar/NavBar";
-import {Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
@@ -23,8 +23,17 @@ const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsCo
 
 class App extends Component {
 
+    catchAllUnhandledErrors = () => {
+        alert('Some error occured')
+}
+
     componentDidMount() {
         this.props.initializeAppThunk()
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors)
+    }
+
+    componentWillMount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -37,13 +46,16 @@ class App extends Component {
                 <HeaderComponent/>
                 <NavBar store={this.props.store}/>
                 <div className='app-wrapper-content'>
-                    <Route render={() => <ProfileContainer/>} path='/profile/:userId?'/>
-                    <Route render={withSuspense(DialogsContainer)} path='/dialogs'/>
-                    <Route render={() => <Music/>} path='/news'/>
-                    <Route render={() => <News/>} path='/music'/>
-                    <Route render={() => <Settings/>} path='/settings'/>
-                    <Route render={() => <UsersContainer/>} path='/users'/>
-                    <Route render={() => <Login/>} patch='/login'/>
+                    <Switch>
+                        <Route render={() => <ProfileContainer/>} path='/profile/:userId?'/>
+                        <Route render={withSuspense(DialogsContainer)} path='/dialogs'/>
+                        <Route render={() => <Music/>} path='/news'/>
+                        <Route render={() => <News/>} path='/music'/>
+                        <Route render={() => <Settings/>} path='/settings'/>
+                        <Route render={() => <UsersContainer/>} path='/users'/>
+                        <Route render={() => <Login/>} patch='/login'/>
+                        <Route render={() => <div>404 not found</div>} patch='*'/>
+                    </Switch>
                 </div>
             </div>
 
